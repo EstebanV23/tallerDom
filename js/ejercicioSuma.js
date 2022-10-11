@@ -402,9 +402,9 @@ btnEliminar.addEventListener(`click`, fnEliminar);
 /* /////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* EJERCICIO PARA CREAR ELEMENTOS A PARTIR DE UN INPUT */
 
-let elemento = document.getElementById(`elemento`);
-
 /* preventDefault() = Hace que no se recargue la página */
+
+let listaElementos = document.querySelector("#elementos");
 
 const fnAgregar = (event) =>
 {
@@ -415,16 +415,22 @@ const fnAgregar = (event) =>
     let li = document.createElement("li");
     // crear un nuevo elemento de botón
     let btnDelete = document.createElement("button");
-    //    
+    // creamos un span para darle estlos a text
+    let span = document.createElement("span");
+
+    let contenido = document.createTextNode(newElement);
+
+    span.appendChild(contenido);
     // agregar elementos a las clases
+    span.className = 'float-start';
     li.className = "list-group-item";
-    btnDelete.className = "btn btn-light btn-outline-danger btn-sm float-end delete"
+    btnDelete.className = "btn btn-outline-danger delete float-end"
 
     // agregar el nodo de textoNode    
-    li.appendChild(document.createTextNode(newElement));
-    btnDelete.appendChild(document.createTextNode("X"));
+    li.appendChild(span);
+    btnDelete.appendChild(document.createTextNode("x"));
 
-    elemento.appendChild(li);
+    listaElementos.appendChild(li);
     li.appendChild(btnDelete);
 }
 
@@ -440,6 +446,5 @@ function fnEliminarElemento(evento) {
 
 }
 
-let listaElementos = document.querySelector("#elementos");
 listaElementos.addEventListener("click", fnEliminarElemento);
 document.getElementById('botonAgregar').addEventListener('click', fnAgregar);
